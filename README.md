@@ -1,5 +1,9 @@
 ## LINE MessagingAPI で作った翻訳アプリを AWS の SAM テンプレートを使ってデプロイしてみる！
 
+### アーキテクチャ
+
+![arch](https://user-images.githubusercontent.com/70458379/126603221-171ff259-682c-4416-b3ad-84522e106fe0.png)
+
 ### 手順
 
 #### master
