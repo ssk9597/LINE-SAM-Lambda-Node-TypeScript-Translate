@@ -70,7 +70,7 @@ Outputs:
   TranslateAPI:
     Description: 'API Gateway'
     # URLを作成（!Subは${}で値を指定することができます）
-    Value: !Sub 'https://${WeatherFashionAPI}.execute-api.${AWS::Region}.amazonaws.com/v1'
+    Value: !Sub 'https://${TranslateAPI}.execute-api.${AWS::Region}.amazonaws.com/v1'
   TranslateFunction:
     Description: 'Lambda'
     # ロールの値を返す
