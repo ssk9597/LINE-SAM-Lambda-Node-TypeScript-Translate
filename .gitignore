@@ -3,3 +3,5 @@ package-lock.json
 .aws-sam
 samconfig.toml
 dist
+_.drawio
+arch.png
