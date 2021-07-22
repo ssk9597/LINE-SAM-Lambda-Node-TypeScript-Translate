@@ -4,6 +4,7 @@ import aws from 'aws-sdk';
 
 // モジュールのインストール
 import { getTranslate } from './Common/getTranslate';
+import { putDynamoDB } from './Common/putDynamoDB';
 
 // SSM
 const ssm = new aws.SSM();
@@ -52,8 +53,6 @@ exports.handler = async (event: any, context: any) => {
     const res: any = await getTranslate(input_text, sourceLang, targetLang);
     const output_text: string = res.TranslatedText;
 
-    console.log(output_text);
-
     // メッセージ送信のために必要な情報
     const replyToken = response.replyToken;
     const post: TextMessage = {
@@ -63,6 +62,19 @@ exports.handler = async (event: any, context: any) => {
 
     // メッセージの送信
     await client.replyMessage(replyToken, post);
+
+    // DB-タイムスタンプ
+    const date = new Date();
+    const Y = date.getFullYear();
+    const M = ('00' + (date.getMonth() + 1)).slice(-2);
+    const D = ('00' + date.getDate()).slice(-2);
+    const h = ('00' + (date.getHours() + 9)).slice(-2);
+    const m = ('00' + date.getMinutes()).slice(-2);
+    const s = ('00' + date.getSeconds()).slice(-2);
+    const dayTime = Y + M + D + h + m + s;
+
+    // DynamoDB保存
+    await putDynamoDB(dayTime, input_text, output_text);
   } catch (err) {
     console.log(err);
   }
