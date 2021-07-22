@@ -2,7 +2,11 @@
 
 ### 手順
 
+#### master
+
 ・`sam init`を実行
+
+#### feature/Create_SAMTemplate
 
 ・パッケージをインストール
 
