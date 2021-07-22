@@ -4,7 +4,9 @@
   "description": "translate",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist",
+    "tsc": "tsc",
+    "build": "npm-run-all clean tsc"
   },
   "repository": {
     "type": "git",
